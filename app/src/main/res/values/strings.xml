@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">wallet</string>
+    <string name="app_name">Wallet POC</string>
     <string name="title_activity_connect_wallet">ConnectWallet</string>
     <string name="back_arrow">BackArrow</string>
+    <string name="title_activity_wallet">Wallet</string>
 </resources>

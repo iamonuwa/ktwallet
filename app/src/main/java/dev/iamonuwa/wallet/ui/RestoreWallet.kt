@@ -1,6 +1,7 @@
 package dev.iamonuwa.wallet.ui
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -32,6 +33,7 @@ fun RestoreWalletScreen(navController: NavController) {
                     .fillMaxHeight()
             ) {
                 Text("Import existing Wallet", fontSize = 32.sp, fontWeight = FontWeight.W600)
+                Text("magna fringilla urna porttitor rhoncus dolor purus non enim praesent elementum facilisis leo vel fringilla est.", fontWeight = FontWeight.W300)
                 Row(modifier = Modifier.padding(top = 32.dp)) {
                     TextField(
                         value = seedPhrase,
@@ -39,7 +41,9 @@ fun RestoreWalletScreen(navController: NavController) {
                             seedPhrase = newText
                         },
                         placeholder = { Text("Use spaces between words if you are a using a recovery phrase") },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
+                        maxLines = 4,
+                        shape = RoundedCornerShape(0.dp)
                     )
                 }
             }
@@ -49,7 +53,7 @@ fun RestoreWalletScreen(navController: NavController) {
                     .padding(vertical = 48.dp, horizontal = 32.dp)
                     .fillMaxSize(), verticalArrangement = Arrangement.Bottom
             ) {
-                Button(onClick = { navController.navigate(AppNavigations.OVERVIEW_SCREEN) }, modifier = Modifier.fillMaxWidth()) {
+                Button(onClick = { navController.navigate(AppNavigations.OVERVIEW_SCREEN) }, shape = RoundedCornerShape(0.dp), modifier = Modifier.fillMaxWidth()) {
                     Text("Restore Wallet")
                 }
             }

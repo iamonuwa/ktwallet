@@ -2,6 +2,7 @@ package dev.iamonuwa.wallet.ui
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.*
@@ -33,10 +34,10 @@ fun ConnectWalletScreen(navController: NavController) {
                   Text("Explore all of Web3 in one place on android", fontSize = 18.sp)
               }
               Column(Modifier.padding(vertical = 48.dp, horizontal = 32.dp).fillMaxSize(), verticalArrangement = Arrangement.Bottom) {
-                  Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth()) {
+                  Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(0.dp)) {
                       Text("Create new wallet")
                   }
-                  Button(onClick = { navController.navigate(AppNavigations.RESTORE_WALLET) }, modifier = Modifier.fillMaxWidth()) {
+                  OutlinedButton(onClick = { navController.navigate(AppNavigations.RESTORE_WALLET) }, shape = RoundedCornerShape(0.dp), modifier = Modifier.fillMaxWidth()) {
                       Text("Import existing wallet")
                   }
               }

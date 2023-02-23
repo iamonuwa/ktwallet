@@ -1,19 +1,13 @@
 package dev.iamonuwa.wallet.ui
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import dev.iamonuwa.wallet.ui.navigation.AppNavigations
@@ -24,7 +18,7 @@ fun createWallet() {
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ConnectWalletScreen(navController: NavController) {
+fun OnboardingScreen(navController: NavController) {
     Scaffold(
         topBar = {},
         floatingActionButton = {},
@@ -53,5 +47,5 @@ fun ConnectWalletScreen(navController: NavController) {
 @Composable
 fun PreviewConnectWalletScreen() {
     val navController = rememberNavController()
-    ConnectWalletScreen(navController = navController)
+    OnboardingScreen(navController = navController)
 }

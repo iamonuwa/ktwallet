@@ -18,6 +18,10 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import dev.iamonuwa.wallet.ui.navigation.AppNavigations
 
+
+fun createWallet() {
+
+}
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConnectWalletScreen(navController: NavController) {
@@ -29,12 +33,12 @@ fun ConnectWalletScreen(navController: NavController) {
           Modifier
               .padding(innerPadding)) {
               Column(modifier = Modifier.padding(32.dp).fillMaxHeight(), verticalArrangement = Arrangement.Center) {
-                  Text("Introducing", fontSize = 32.sp, fontWeight = FontWeight.W600)
-                  Text("Balance Wallet", fontSize = 32.sp, fontWeight = FontWeight.W600)
-                  Text("Explore all of Web3 in one place on android", fontSize = 18.sp)
+                  Text("Introducing", style = MaterialTheme.typography.headlineLarge, fontWeight = FontWeight.Bold)
+                  Text("Balance Wallet", style = MaterialTheme.typography.headlineLarge, fontWeight = FontWeight.Bold)
+                  Text("Crypto made easy", style = MaterialTheme.typography.bodyMedium)
               }
               Column(Modifier.padding(vertical = 48.dp, horizontal = 32.dp).fillMaxSize(), verticalArrangement = Arrangement.Bottom) {
-                  Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(0.dp)) {
+                  Button(onClick = { navController.navigate(AppNavigations.NEW_WALLET) }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(0.dp)) {
                       Text("Create new wallet")
                   }
                   OutlinedButton(onClick = { navController.navigate(AppNavigations.RESTORE_WALLET) }, shape = RoundedCornerShape(0.dp), modifier = Modifier.fillMaxWidth()) {

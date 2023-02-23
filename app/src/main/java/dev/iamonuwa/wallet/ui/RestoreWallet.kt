@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
@@ -28,14 +29,18 @@ fun RestoreWalletScreen(navController: NavController) {
                 .padding(innerPadding)
         ) {
             Column(
+                horizontalAlignment=Alignment.CenterHorizontally,
                 modifier = Modifier
                     .padding(32.dp)
                     .fillMaxHeight()
+                    .fillMaxWidth()
             ) {
-                Text("Import existing Wallet", fontSize = 32.sp, fontWeight = FontWeight.W600)
+                Text("Import existing Wallet", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
+                Spacer(modifier = Modifier.height(10.dp))
                 Text("magna fringilla urna porttitor rhoncus dolor purus non enim praesent elementum facilisis leo vel fringilla est.", fontWeight = FontWeight.W300)
-                Row(modifier = Modifier.padding(top = 32.dp)) {
-                    TextField(
+                Spacer(modifier = Modifier.height(40.dp))
+                Row {
+                    OutlinedTextField(
                         value = seedPhrase,
                         onValueChange = { newText ->
                             seedPhrase = newText
@@ -54,7 +59,7 @@ fun RestoreWalletScreen(navController: NavController) {
                     .fillMaxSize(), verticalArrangement = Arrangement.Bottom
             ) {
                 Button(onClick = { navController.navigate(AppNavigations.OVERVIEW_SCREEN) }, shape = RoundedCornerShape(0.dp), modifier = Modifier.fillMaxWidth()) {
-                    Text("Restore Wallet")
+                    Text("Import Wallet")
                 }
             }
         }

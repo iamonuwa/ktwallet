@@ -7,7 +7,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dev.iamonuwa.wallet.ui.navigation.NavGraph
-import dev.iamonuwa.wallet.ui.screens.ui.theme.WalletTheme
+import dev.iamonuwa.wallet.ui.theme.WalletTheme
 
 @Composable
 fun WalletApp() {

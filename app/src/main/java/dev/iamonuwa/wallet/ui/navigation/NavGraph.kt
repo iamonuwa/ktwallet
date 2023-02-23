@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dev.iamonuwa.wallet.ui.ConnectWalletScreen
+import dev.iamonuwa.wallet.ui.NewWalletScreen
 import dev.iamonuwa.wallet.ui.OverviewScreen
 import dev.iamonuwa.wallet.ui.RestoreWalletScreen
 
@@ -25,6 +26,9 @@ fun NavGraph(
         }
         composable(route = AppNavigations.OVERVIEW_SCREEN) {
             OverviewScreen()
+        }
+        composable(route = AppNavigations.NEW_WALLET) {
+            NewWalletScreen()
         }
     }
 }

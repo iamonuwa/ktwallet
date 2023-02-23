@@ -3,22 +3,15 @@ package dev.iamonuwa.wallet.ui
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.Send
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight.Companion.W300
-import androidx.compose.ui.text.font.FontWeight.Companion.W400
-import androidx.compose.ui.text.font.FontWeight.Companion.W500
-import androidx.compose.ui.text.font.FontWeight.Companion.W800
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 
 @Composable
 fun OverviewScreen() {
@@ -27,41 +20,50 @@ fun OverviewScreen() {
         .fillMaxSize()) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxWidth()) {
-                Text(text = "0ETH", fontSize = 24.sp, fontWeight = W500)
-                Text(text = "$0.00", fontSize = 24.sp, fontWeight = W500, color = MaterialTheme.colorScheme.primary)
-
-                Row(Modifier.padding(24.dp)) {
-                    Text(text = "0x9b0e2a45276D1A308eEB6473d301E88cb10BB691", overflow = TextOverflow.Visible, fontSize = 28.sp, fontWeight = W400, color = Color.Gray)
+                Text(text = "0ETH", style = MaterialTheme.typography.headlineLarge)
+                Text(text = "$0.00", style = MaterialTheme.typography.headlineSmall, color = MaterialTheme.colorScheme.primary)
+                Spacer(modifier = Modifier.height(32.dp))
+                Row(modifier = Modifier.padding(horizontal = 32.dp)) {
+                    Text(text = "0x9b0e2a45276D1A308eEB6473d301E88cb10BB691", overflow = TextOverflow.Visible, style = MaterialTheme.typography.headlineSmall, color = Color.Gray)
                 }
 
-                Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
+                Spacer(modifier = Modifier.height(32.dp))
+
+                Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 32.dp)) {
                     TextButton(onClick = { /*TODO*/ }) {
+                        Icon(imageVector = Icons.Filled.QrCodeScanner, contentDescription = "QR Code Scan")
+                        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
                         Text(text = "QR CODE")
                     }
 
                     TextButton(onClick = { /*TODO*/ }) {
+                        Icon(imageVector = Icons.Filled.ContentCopy, contentDescription = "QR Code Scan")
+                        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
                         Text(text = "COPY")
                     }
                 }
             }
         }
-        Column(modifier = Modifier
-            .padding(top = 20.dp)
-            .fillMaxWidth()) {
-            Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(0.dp)) {
+        Spacer(modifier = Modifier.height(32.dp))
+        Row(modifier = Modifier
+            .padding(horizontal = 32.dp)
+            .fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Button(onClick = { /*TODO*/ }, shape = RoundedCornerShape(0.dp)) {
                 Icon(imageVector = Icons.Filled.Add, contentDescription = "Add Funds", modifier = Modifier.size(ButtonDefaults.IconSize))
                 Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
                 Text("Add")
             }
-            Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(0.dp)) {
+            Button(onClick = { /*TODO*/ }, shape = RoundedCornerShape(0.dp)) {
                 Icon(imageVector = Icons.Filled.KeyboardArrowRight, contentDescription = "Add Funds", modifier = Modifier.size(ButtonDefaults.IconSize))
                 Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
                 Text("Pay")
             }
-            Button(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(0.dp)) {
+            Button(onClick = { /*TODO*/ }, shape = RoundedCornerShape(0.dp)) {
                 Icon(imageVector = Icons.Filled.Send, contentDescription = "Add Funds", modifier = Modifier.size(ButtonDefaults.IconSize))
                 Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-                Text("Out")
+                Text("Send")
             }
         }
     }

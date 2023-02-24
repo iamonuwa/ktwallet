@@ -1,26 +1,24 @@
-package dev.iamonuwa.wallet.ui
+package dev.iamonuwa.wallet.presentation.wallet
 
-import android.widget.Toast
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.iamonuwa.wallet.ui.components.AppTopBar
+import androidx.hilt.navigation.compose.hiltViewModel
+import kotlinx.coroutines.runBlocking
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NewWalletScreen() {
+fun CreateWalletScreen() {
+    val vm: WalletViewModel = hiltViewModel()
     Scaffold(
-        topBar = {
-            AppTopBar(title = "Create Wallet", onBackButtonPressed = {})
-        },
+        topBar = {},
         content = { innerPadding ->
             Box(
                 Modifier
@@ -32,12 +30,6 @@ fun NewWalletScreen() {
                         .fillMaxSize()
                         .padding(16.dp)
                 ) {
-                    var password by remember { mutableStateOf(TextFieldValue("")) }
-                    var confirmPassword by remember { mutableStateOf(TextFieldValue("")) }
-
-                    var seedPhrase by remember {
-                        mutableStateOf("")
-                    }
 
                     Column(modifier = Modifier.fillMaxWidth()) {
                         Text(
@@ -52,29 +44,27 @@ fun NewWalletScreen() {
                                 .fillMaxWidth()
                         ) {
                             OutlinedTextField(
-                                value = password,
+                                value = vm.password,
                                 visualTransformation = PasswordVisualTransformation(),
                                 placeholder = { Text("Wallet Password") },
                                 modifier = Modifier.fillMaxWidth(),
-                                onValueChange = { newPassword -> password = newPassword })
+                                onValueChange = { value -> vm.onPasswordInputChange(value) })
                             Spacer(modifier = Modifier.height(20.dp))
                             OutlinedTextField(
-                                value = confirmPassword,
+                                value = vm.confirmPassword,
                                 visualTransformation = PasswordVisualTransformation(),
                                 placeholder = { Text(text = "Confirm Wallet Password") },
                                 modifier = Modifier.fillMaxWidth(),
-                                onValueChange = { newPasswordConfirmation ->
-                                    confirmPassword = newPasswordConfirmation
-                                })
+                                onValueChange = { value -> vm.onConfirmPasswordInputChange(value) })
                         }
-                        if (seedPhrase.isNotEmpty()) {
+                        if (vm.seedPhrase.isNotEmpty()) {
                             Row(
                                 modifier = Modifier
                                     .background(MaterialTheme.colorScheme.secondary)
                                     .fillMaxWidth()
                             ) {
                                 Text(
-                                    text = seedPhrase,
+                                    text = vm.seedPhrase,
                                     style = MaterialTheme.typography.titleSmall,
                                     modifier = Modifier.padding(
                                         vertical = 12.dp,
@@ -89,14 +79,11 @@ fun NewWalletScreen() {
                         }
                     }
                     Column(modifier = Modifier.fillMaxWidth()) {
-                        val context = LocalContext.current
                         Button(
                             onClick = {
-                                Toast.makeText(
-                                    context,
-                                    "Wallet has been created successfully",
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                runBlocking {
+                                    vm.createWallet()
+                                }
                             }, shape = Shapes.None, modifier = Modifier
                                 .height(48.dp)
                                 .fillMaxWidth()
@@ -112,6 +99,6 @@ fun NewWalletScreen() {
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewNewWalletScreen() {
-    NewWalletScreen()
+fun PreviewCreateWalletScreen() {
+    CreateWalletScreen()
 }

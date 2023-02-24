@@ -1,29 +1,26 @@
-package dev.iamonuwa.wallet.ui
+package dev.iamonuwa.wallet.presentation.wallet
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import dev.iamonuwa.wallet.ui.components.AppTopBar
-import dev.iamonuwa.wallet.ui.navigation.AppNavigations
+import kotlinx.coroutines.runBlocking
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RestoreWalletScreen(navController: NavController) {
-    var seedPhrase by remember { mutableStateOf(TextFieldValue("")) }
+fun ImportWalletScreen(navController: NavController) {
+    val vm: WalletViewModel = hiltViewModel()
 
     Scaffold(
         topBar = {
-            AppTopBar(title = "Import Wallet", onBackButtonPressed = {})
         },
         floatingActionButton = {}
     ) { innerPadding ->
@@ -37,14 +34,12 @@ fun RestoreWalletScreen(navController: NavController) {
                     .fillMaxHeight()
                     .fillMaxWidth()
             ) {
-                Text(text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vulputate ut pharetra sit amet aliquam id diam.", color=MaterialTheme.colorScheme.outline,  style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Normal)
+                Text(text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vulputate ut pharetra sit amet aliquam id diam.", color= MaterialTheme.colorScheme.outline,  style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Normal)
                 Spacer(modifier = Modifier.height(40.dp))
                 Row {
                     OutlinedTextField(
-                        value = seedPhrase,
-                        onValueChange = { newText ->
-                            seedPhrase = newText
-                        },
+                        value = vm.seedPhrase,
+                        onValueChange = { value -> vm.onSeedPhraseInputChange(value)},
                         placeholder = { Text("Use spaces between words if you are a using a recovery phrase") },
                         modifier = Modifier.fillMaxWidth(),
                         maxLines = 4,
@@ -58,7 +53,9 @@ fun RestoreWalletScreen(navController: NavController) {
                     .padding(vertical = 48.dp, horizontal = 16.dp)
                     .fillMaxSize(), verticalArrangement = Arrangement.Bottom
             ) {
-                Button(onClick = { navController.navigate(AppNavigations.OVERVIEW_SCREEN) }, shape = RoundedCornerShape(0.dp), modifier = Modifier.fillMaxWidth()) {
+                Button(onClick = { runBlocking {
+                    vm.importWallet()
+                } }, shape = RoundedCornerShape(0.dp), modifier = Modifier.fillMaxWidth()) {
                     Text("Import Wallet")
                 }
             }
@@ -68,7 +65,7 @@ fun RestoreWalletScreen(navController: NavController) {
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewRestoreWalletScreen() {
+fun PreviewImportWalletScreen() {
     val navController = rememberNavController()
-    RestoreWalletScreen(navController = navController)
+    ImportWalletScreen(navController = navController)
 }

@@ -1,4 +1,5 @@
-package dev.iamonuwa.wallet.ui
+package dev.iamonuwa.wallet.presentation.wallet
+
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun OverviewScreen() {
+fun WalletOverviewScreen() {
     Column(modifier = Modifier
         .padding(vertical = 32.dp)
         .fillMaxSize()) {
@@ -72,6 +73,6 @@ fun OverviewScreen() {
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewOverviewScreen() {
-    OverviewScreen()
+fun PreviewWalletOverviewScreen() {
+    WalletOverviewScreen()
 }

@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import dev.iamonuwa.wallet.ui.components.AppTopBar
 import dev.iamonuwa.wallet.ui.navigation.AppNavigations
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -21,7 +22,9 @@ fun RestoreWalletScreen(navController: NavController) {
     var seedPhrase by remember { mutableStateOf(TextFieldValue("")) }
 
     Scaffold(
-        topBar = {},
+        topBar = {
+            AppTopBar(title = "Import Wallet", onBackButtonPressed = {})
+        },
         floatingActionButton = {}
     ) { innerPadding ->
         Box(
@@ -29,15 +32,12 @@ fun RestoreWalletScreen(navController: NavController) {
                 .padding(innerPadding)
         ) {
             Column(
-                horizontalAlignment=Alignment.CenterHorizontally,
                 modifier = Modifier
-                    .padding(32.dp)
+                    .padding(16.dp)
                     .fillMaxHeight()
                     .fillMaxWidth()
             ) {
-                Text("Import existing Wallet", style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
-                Spacer(modifier = Modifier.height(10.dp))
-                Text("magna fringilla urna porttitor rhoncus dolor purus non enim praesent elementum facilisis leo vel fringilla est.", fontWeight = FontWeight.W300)
+                Text(text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vulputate ut pharetra sit amet aliquam id diam.", color=MaterialTheme.colorScheme.outline,  style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Normal)
                 Spacer(modifier = Modifier.height(40.dp))
                 Row {
                     OutlinedTextField(
@@ -55,7 +55,7 @@ fun RestoreWalletScreen(navController: NavController) {
 
             Column(
                 Modifier
-                    .padding(vertical = 48.dp, horizontal = 32.dp)
+                    .padding(vertical = 48.dp, horizontal = 16.dp)
                     .fillMaxSize(), verticalArrangement = Arrangement.Bottom
             ) {
                 Button(onClick = { navController.navigate(AppNavigations.OVERVIEW_SCREEN) }, shape = RoundedCornerShape(0.dp), modifier = Modifier.fillMaxWidth()) {
